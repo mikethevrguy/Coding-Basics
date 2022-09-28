@@ -398,15 +398,18 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1145052654}
-  m_LocalRotation: {x: -0.045897488, y: 0.94248545, z: -0.14544064, w: 0.2974252}
+  m_LocalRotation: {x: 0.055855103, y: 0.96104944, z: -0.19855075, w: 0.18396151}
   m_LocalPosition: {x: 0, y: 1.379, z: 0}
   m_LocalScale: {x: 2.2286, y: -0.08068195, z: 2.2286}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1214781586}
+  - {fileID: 1395986154}
+  - {fileID: 2131323496}
+  - {fileID: 1914448247}
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 14.291, y: 143.678, z: -10.286}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1214781585
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,6 +507,68 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214781585}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1395986153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1395986154}
+  m_Layer: 0
+  m_Name: recipe loc 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1395986154
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395986153}
+  m_LocalRotation: {x: -0.045897484, y: -0.94248545, z: -0.14544062, w: 0.2974252}
+  m_LocalPosition: {x: -0.087, y: -7.4, z: -0.204}
+  m_LocalScale: {x: 0.44871196, y: -3.6248655, z: 0.4917845}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1145052659}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1914448246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1914448247}
+  m_Layer: 0
+  m_Name: recipe loc 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1914448247
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914448246}
+  m_LocalRotation: {x: -0.045897484, y: -0.94248545, z: -0.14544062, w: 0.2974252}
+  m_LocalPosition: {x: 0.345, y: -7.399999, z: 0.025}
+  m_LocalScale: {x: 0.44871196, y: -3.6248655, z: 0.4917845}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1145052659}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1989405636
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,4 +652,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2131323495
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2131323496}
+  m_Layer: 0
+  m_Name: recipe loc 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2131323496
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131323495}
+  m_LocalRotation: {x: -0.045897484, y: -0.94248545, z: -0.14544062, w: 0.2974252}
+  m_LocalPosition: {x: -0.053, y: -7.399999, z: 0.246}
+  m_LocalScale: {x: 0.44871196, y: -3.6248655, z: 0.4917845}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1145052659}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

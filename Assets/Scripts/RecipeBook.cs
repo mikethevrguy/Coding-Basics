@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Reflection;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -11,9 +12,12 @@ public class RecipeBook : MonoBehaviour
 
     public List<int> usedIngredients = new List<int>();
 
-    public static int chosenRecipeID;
+    public int chosenRecipeID;
 
     public PanLogic panLogic;
+
+    public float earnings;
+    private bool gameStarted = false;
 
     public void ChooseIngredient(int ingredientID)
     {
@@ -29,28 +33,72 @@ public class RecipeBook : MonoBehaviour
     }
     private void Start()
     {
-        ingredients.Add(new Ingredient("Red Cube", 0, Resources.Load("Ingredients/RedCube") as GameObject));
-        ingredients.Add(new Ingredient("Green Cube", 1, Resources.Load("Ingredients/GreenCube") as GameObject));
-        ingredients.Add(new Ingredient("Orange Cube", 2, Resources.Load("Ingredients/OrangeCube") as GameObject));
-        ingredients.Add(new Ingredient("Purple Sphere", 3, Resources.Load("Ingredients/PurpleSphere") as GameObject));
-        ingredients.Add(new Ingredient("Yellow Sphere", 0, Resources.Load("Ingredients/YellowSphere") as GameObject));
+        
+        ingredients.Add(new Ingredient("Red Cube", 0, Resources.Load("Ingredients/RedCube") as GameObject, 3));
+        ingredients.Add(new Ingredient("Green Cube", 1, Resources.Load("Ingredients/GreenCube") as GameObject, 5));
+        ingredients.Add(new Ingredient("Orange Cube", 2, Resources.Load("Ingredients/OrangeCube") as GameObject, 2));
+        ingredients.Add(new Ingredient("Purple Sphere", 3, Resources.Load("Ingredients/PurpleSphere") as GameObject, 8));
+        ingredients.Add(new Ingredient("Yellow Sphere", 0, Resources.Load("Ingredients/YellowSphere") as GameObject, 1));
 
-        recipes.Add(new Recipe("Recipe 1", 0, 3, 5, RandomIngredientList()));
-        recipes.Add(new Recipe("Recipe 2", 1, 5, 10, RandomIngredientList()));
-        recipes.Add(new Recipe("Recipe 3", 2, 3, 7, RandomIngredientList()));
-        recipes.Add(new Recipe("Recipe 4", 3, 2, 8, RandomIngredientList()));
+        recipes.Add(new Recipe("Recipe 1", 0, 3, 5, RandomIngredientList(), 20));
+        recipes.Add(new Recipe("Recipe 2", 1, 5, 10, RandomIngredientList(), 20));
+        recipes.Add(new Recipe("Recipe 3", 2, 3, 7, RandomIngredientList(), 50));
+        recipes.Add(new Recipe("Recipe 4", 3, 2, 8, RandomIngredientList(), 30));
+        
 
         SpawnIngredients();
 
         ChooseRecipe();
     }
-    void ChooseRecipe()
+    public float CalculateEarnings(bool gain)
     {
+        float temp = 0;
+        for (int i = 0; i < recipes[chosenRecipeID].ingredientIDs.Count; i++)
+        {
+            temp += ingredients[recipes[chosenRecipeID].ingredientIDs[i]].dollarValue;
+        }
+        if (gain)
+        {
+            temp = temp + (temp / recipes[chosenRecipeID].markup);
+            earnings += temp;
+        } else
+        {
+            earnings -= temp;
+        }
+
+        return temp;
+    }
+   public void ChooseRecipe()
+    {
+        clearConsole();
+        if (gameStarted)
+        {
+            ResetPan();
+        }
+       
         chosenRecipeID = Random.Range(0, recipes.Count - 1);
         for (int i = 0; i < recipes[chosenRecipeID].ingredientIDs.Count; i++)
         {
-            Debug.Log(recipes[chosenRecipeID].ingredientIDs[i]);
+            Debug.Log("Recipe ID: " + chosenRecipeID);
+            Debug.Log("Item " + i + ": " + recipes[chosenRecipeID].ingredientIDs[i]);
         }
+        gameStarted = true;
+    }
+    void clearConsole()
+    {
+        var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
+        var type = assembly.GetType("UnityEditor.LogEntries");
+        var method = type.GetMethod("Clear");
+        method.Invoke(new object(), null);
+    }
+    void ResetPan()
+    {
+        
+        Destroy(GameObject.Find("Pan Item 1"));
+        Destroy(GameObject.Find("Pan Item 2"));
+        Destroy(GameObject.Find("Pan Item 3"));
+        usedIngredients.Clear();
+
     }
     List<int> RandomIngredientList()
     {
