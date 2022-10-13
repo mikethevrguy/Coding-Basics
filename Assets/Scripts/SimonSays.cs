@@ -6,8 +6,8 @@ public class SimonSays : MonoBehaviour
 {
     enum colors { black, blue, cyan, gray, green, magenta, red, yellow };
     colors cubeColor;
-    [SerializeField]
-    int itemCount;
+    [Range(1, 8)]
+    public int itemCount = 1;
     [SerializeField]
     GameObject cubePrefab;
     [SerializeField]
@@ -15,17 +15,13 @@ public class SimonSays : MonoBehaviour
     public List<GameObject> cubePatterns = new List<GameObject>();
     public List<GameObject> guesses = new List<GameObject>();
     private List<GameObject> cubes = new List<GameObject>();
-    [SerializeField]
-    GameObject menu;
-    // Start is called before the first frame update
+
     void Start()
     {
-        
-        //Invoke("CubePattern", 1f); // talk about calling it right away and benefits of delays
+        StartGame();
     }
     public void StartGame()
     {
-        menu.SetActive(false);
         foreach (colors color in System.Enum.GetValues(typeof(colors)))
         {
             colorEnumList.Add(color);
@@ -37,13 +33,13 @@ public class SimonSays : MonoBehaviour
     {
         guesses.Add(obj);
         string message = "";
-        for (int i = 0; i < guesses.Count; i++) // talk about comparing loops
+        for (int i = 0; i < guesses.Count; i++)
         {
             if (cubePatterns[i].name != guesses[i].name)
             {
                 message = "You Lose!!!";
                 Debug.Log(message);
-                return; // talk about breaking vs return
+                return; 
             } else
             {
                 message = "You Win!!!";
@@ -53,20 +49,8 @@ public class SimonSays : MonoBehaviour
                     StartCoroutine(Pattern());
                     Debug.Log(message);
                 }
-                
             }
         }
-       
-    }
-    void CubePattern() // talk about benefits of coroutines
-    {
-        int ranNum = RandomNumber(0, cubes.Count);
-        cubePatterns.Add(cubes[ranNum]);
-        foreach (GameObject obj in cubePatterns)
-        {
-            obj.GetComponent<Cube>().StartHover();
-        }
-
     }
     IEnumerator Pattern()
     {
@@ -74,11 +58,9 @@ public class SimonSays : MonoBehaviour
         cubePatterns.Add(cubes[ranNum]);
         foreach (GameObject obj in cubePatterns)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.75f);
             obj.GetComponent<Cube>().StartHover();
-            
         }
-
     }
     void SpawnObjects()
     {
@@ -92,7 +74,7 @@ public class SimonSays : MonoBehaviour
             GameObject tempCube = (GameObject)Instantiate(cubePrefab);
             cubes.Add(tempCube);
             Renderer tempRend = tempCube.GetComponent<Renderer>();
-            tempCube.transform.position = new Vector3(((-1 + i)*2)-2, 0, 0);
+            tempCube.transform.position = new Vector3(i*1, 0, 0);
             cubeColor = colorEnumList[ranNum];
             switch (cubeColor) {
                 case colors.black:
@@ -128,10 +110,8 @@ public class SimonSays : MonoBehaviour
                     tempRend.material.color = Color.yellow;
                     break;
             }
-            
             colorEnumList.Remove(cubeColor);
         }
-        
     }
     private int RandomNumber(int min, int max)
     {
