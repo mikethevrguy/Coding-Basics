@@ -11,7 +11,8 @@ public class Recipe
     public int maxCooktime;
     public List<int> ingredientIDs;
     public float markup;
-
+    // constructor for ingredient class - each of the required parameters need
+    // to be included when instantiating a new instance of the class
     public Recipe(string _name, int _id, int _minCookTime, int _maxCookTime, List<int> _ingredientIDs, float _markup)
     {
         name = _name;
